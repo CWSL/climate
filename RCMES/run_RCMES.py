@@ -108,9 +108,13 @@ bounds = Bounds(min_lat, max_lat, min_lon, max_lon, start_time, end_time)
 
 if ref_dataset.lats.ndim !=2 and ref_dataset.lons.ndim !=2:
     ref_dataset = dsp.subset(bounds,ref_dataset)
+else:
+    ref_dataset = dsp.temporal_slice(bounds.start, bounds.end, ref_dataset)
 for idata,dataset in enumerate(model_datasets):
     if dataset.lats.ndim !=2 and dataset.lons.ndim !=2:
         model_datasets[idata] = dsp.subset(bounds,dataset)
+    else:
+        model_datasets[idata] = dsp.temporal_slice(bounds.start, bounds.end, dataset)
 
 # Temporaly subset both observation and model datasets for the user specified season
 month_start = time_info['month_start']
@@ -145,8 +149,10 @@ for model_name in model_names:
 print 'Regridding datasets: ', config['regrid']
 if not config['regrid']['regrid_on_reference']:
     ref_dataset = dsp.spatial_regrid(ref_dataset, new_lat, new_lon)
+    print 'Reference dataset has been regridded'
 for idata,dataset in enumerate(model_datasets):
     model_datasets[idata] = dsp.spatial_regrid(dataset, new_lat, new_lon)
+    print model_names[idata]+' has been regridded'
 
 print 'Propagating missing data information'
 ref_dataset = dsp.mask_missing_data([ref_dataset]+model_datasets)[0]

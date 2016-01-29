@@ -16,7 +16,7 @@
 # under the License.
 
 workdir: ./
-output_netcdf_filename: cordex-arctic_rsds_JUL.nc
+output_netcdf_filename: cordex-arctic_rlus_JUL.nc
 
 # (RCMES will temporally subset data between month_start and month_end. If average_each_year is True (False), seasonal mean in each year is (not) calculated and used for metrics calculation.)
 time:
@@ -43,21 +43,21 @@ datasets:
     reference:
         data_source: local
         data_name: SRB
-        path: ./data/srb_rel3.0_shortwave_from_1983_to_2007.nc                           
-        variable: sw_sfc_dn
+        path: ./data/CORDEX-Arctic_data/srb_rel3.0_longwave_from_1983_to_2007.nc                           
+        variable: lw_sfc_up
         multiplying_factor: 1
 
     targets:
         data_source: local
-        path: /home/huikyole/data/CORDEX-ARC/rsds*.nc                                                    
-        variable: rsds    
+        path: ./data/CORDEX-Arctic_data/rlus*.nc                                                    
+        variable: rlus    
 
 number_of_metrics_and_plots: 1
 
 metrics1: Map_plot_bias_of_multiyear_climatology
 
 plots1:
-    file_name: cordex-arctic_rsds_JUL_mean_bias_to_SRB
+    file_name: cordex-arctic_rlus_JUL_mean_bias_to_SRB
     subplots_array: !!python/tuple [2,2] 
     map_projection: npstere
 

@@ -1,5 +1,5 @@
 workdir: ./
-output_netcdf_filename: narccap_rsds_DJF_mean_1980-2003.nc
+output_netcdf_filename: narccap_rsds_JJA_mean_1980-2003.nc
 
 # (RCMES will temporally subset data between month_start and month_end. If average_each_year is True (False), seasonal mean in each year is (not) calculated and used for metrics calculation.)
 time:
@@ -7,8 +7,8 @@ time:
     start_time: 1984-01-01
     end_time: 2003-12-31
     temporal_resolution: monthly
-    month_start: 12
-    month_end: 2
+    month_start: 6
+    month_end: 8
     average_each_year: True
 
 space:
@@ -26,12 +26,12 @@ datasets:
     reference:
         data_source: local
         data_name: SRB
-        path: ../data/srb_rel3.0_shortwave_from_1983_to_2007.nc
+        path: ./data/NARCCAP_data/srb_rel3.0_shortwave_from_1983_to_2007.nc
         variable: sw_sfc_dn
 
     targets:
         data_source: local
-        path: ../data/rsds*ncep.monavg.nc                                                    
+        path: ./data/NARCCAP_data/rsds*ncep.monavg.nc                                                    
         variable: rsds    
 
 number_of_metrics_and_plots: 1
@@ -39,7 +39,7 @@ number_of_metrics_and_plots: 1
 metrics1: Portrait_diagram_subregion_interannual_variability
 
 plots1:
-    file_name: Fig16_winter
+    file_name: Fig16_summer
 
 use_subregions: True 
 

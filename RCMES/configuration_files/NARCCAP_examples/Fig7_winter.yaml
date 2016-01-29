@@ -1,5 +1,5 @@
 workdir: ./
-output_netcdf_filename: narccap_prec_JJA_mean_1980-2003.nc
+output_netcdf_filename: narccap_tas_DJF_mean_1980-2003.nc
 
 # (RCMES will temporally subset data between month_start and month_end. If average_each_year is True (False), seasonal mean in each year is (not) calculated and used for metrics calculation.)
 time:
@@ -7,8 +7,8 @@ time:
     start_time: 1980-01-01
     end_time: 2003-12-31
     temporal_resolution: monthly
-    month_start: 6
-    month_end: 8
+    month_start: 12
+    month_end: 2
     average_each_year: True
 
 space:
@@ -27,19 +27,19 @@ datasets:
         data_source: rcmed
         data_name: CRU
         dataset_id: 10
-        parameter_id: 37
+        parameter_id: 38
 
     targets:
         data_source: local
-        path: ../data/prec*ncep.monavg.nc                                                    
-        variable: prec    
+        path: ./data/NARCCAP_data/temp*ncep.monavg.nc                                                    
+        variable: temp    
 
 number_of_metrics_and_plots: 1
 
 metrics1: Portrait_diagram_subregion_interannual_variability
 
 plots1:
-    file_name: Fig12_summer
+    file_name: Fig7_winter 
 
 use_subregions: True 
 
